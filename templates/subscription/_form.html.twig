@@ -1,0 +1,14 @@
+{{ form_start(form) }}
+<div class="row">
+    <div class="col-md-6">{{ form_row(form.member, {'attr': {'class': 'form-control'}}) }}</div>
+    <div class="col-md-6">{{ form_row(form.plan, {'attr': {'class': 'form-control'}}) }}</div>
+</div>
+<div class="row">
+    <div class="col-md-6">{{ form_row(form.startDate, {'attr': {'class': 'form-control'}}) }}</div>
+    <div class="col-md-6">{{ form_row(form.endDate, {'attr': {'class': 'form-control'}}) }}</div>
+</div>
+<div class="row">
+    <div class="col-md-6">{{ form_row(form.isPaid, {'attr': {'class': 'form-check-input'}}) }}</div>
+</div>
+<button class="btn btn-primary mt-3">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

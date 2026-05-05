@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Popular Sessions{% endblock %}
+
+{% block body %}
+<div class="card">
+    <div class="card-header bg-primary text-white"><h3><i class="fas fa-chart-line"></i> Most Popular Sessions</h3></div>
+    <div class="card-body">
+        <table class="table table-striped">
+            <thead><tr><th>Session</th><th>Bookings</th></tr></thead>
+            <tbody>
+                {% for s in sessions %}
+                    <tr><td>{{ s.title }}</td><td><span class="badge bg-success">{{ s.howMany }}</span></td></tr>
+                {% else %}
+                    <tr><td colspan="2" class="text-center">No data</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
