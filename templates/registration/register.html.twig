@@ -1,204 +1,57 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Create an account{% endblock %}
+{% block title %}Register{% endblock %}
 
 {% block body %}
-<div class="container">
-    <div class="row justify-content-center align-items-center min-vh-100">
-        <div class="col-md-6 col-lg-5">
-            <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
-                <!-- Decorative header -->
-                <div class="bg-gradient-primary py-4 text-center">
-                    <div class="mb-3">
-                        <i class="fas fa-dumbbell fa-3x text-white"></i>
-                    </div>
-                    <h3 class="text-white mb-0 fw-bold">Create Account</h3>
-                    <p class="text-white-50 small mb-0">Join our gym community today</p>
-                </div>
-
-                <div class="card-body p-4 p-lg-5">
-                    {% for flash_error in app.flashes('verify_email_error') %}
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            <i class="fas fa-exclamation-circle me-2"></i>{{ flash_error }}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                        </div>
-                    {% endfor %}
-
-                    {{ form_errors(registrationForm) }}
-
-                    {{ form_start(registrationForm, {'attr': {'novalidate': 'novalidate'}}) }}
-                        
-                        <!-- Email field -->
-                        <div class="mb-4">
-                            {{ form_label(registrationForm.email, 'Email Address', {'label_attr': {'class': 'form-label fw-semibold'}}) }}
-                            <div class="input-group">
-                                <span class="input-group-text bg-light border-end-0">
-                                    <i class="fas fa-envelope text-muted"></i>
-                                </span>
-                                {{ form_widget(registrationForm.email, {
-                                    'attr': {
-                                        'class': 'form-control border-start-0 ps-0',
-                                        'placeholder': 'Enter your email'
-                                    }
-                                }) }}
-                            </div>
-                            {{ form_errors(registrationForm.email) }}
-                        </div>
-
-                        <!-- Username field -->
-                        <div class="mb-4">
-                            {{ form_label(registrationForm.username, 'Username', {'label_attr': {'class': 'form-label fw-semibold'}}) }}
-                            <div class="input-group">
-                                <span class="input-group-text bg-light border-end-0">
-                                    <i class="fas fa-user text-muted"></i>
-                                </span>
-                                {{ form_widget(registrationForm.username, {
-                                    'attr': {
-                                        'class': 'form-control border-start-0 ps-0',
-                                        'placeholder': 'Choose a username'
-                                    }
-                                }) }}
-                            </div>
-                            <div class="form-text text-muted small">
-                                <i class="fas fa-info-circle me-1"></i>Your username will be visible to others
-                            </div>
-                            {{ form_errors(registrationForm.username) }}
-                        </div>
-
-                        <!-- Password field -->
-                        <div class="mb-4">
-                            {{ form_label(registrationForm.plainPassword, 'Password', {'label_attr': {'class': 'form-label fw-semibold'}}) }}
-                            <div class="input-group">
-                                <span class="input-group-text bg-light border-end-0">
-                                    <i class="fas fa-lock text-muted"></i>
-                                </span>
-                                {{ form_widget(registrationForm.plainPassword, {
-                                    'attr': {
-                                        'class': 'form-control border-start-0 ps-0',
-                                        'placeholder': 'Create a strong password'
-                                    }
-                                }) }}
-                            </div>
-                            <div class="form-text text-muted small">
-                                <i class="fas fa-shield-alt me-1"></i>Minimum 6 characters
-                            </div>
-                            {{ form_errors(registrationForm.plainPassword) }}
-                        </div>
-
-                        <!-- Agree terms checkbox -->
-                        <div class="mb-4">
-                            <div class="form-check">
-                                {{ form_widget(registrationForm.agreeTerms, {
-                                    'attr': {
-                                        'class': 'form-check-input',
-                                        'style': 'cursor: pointer;'
-                                    }
-                                }) }}
-                                {{ form_label(registrationForm.agreeTerms, 'I agree to the Terms of Service and Privacy Policy', {
-                                    'label_attr': {
-                                        'class': 'form-check-label small'
-                                    }
-                                }) }}
-                            </div>
-                            {{ form_errors(registrationForm.agreeTerms) }}
-                        </div>
-
-                        <!-- Submit button -->
-                        <div class="d-grid gap-2 mb-4">
-                            <button type="submit" class="btn btn-primary btn-lg rounded-pill py-2 fw-semibold">
-                                <i class="fas fa-user-plus me-2"></i>Register
-                            </button>
-                        </div>
-
-                        <!-- Login link -->
-                        <div class="text-center">
-                            <p class="mb-0 text-muted small">
-                                Already have an account? 
-                                <a href="{{ path('login') }}" class="text-decoration-none fw-semibold">
-                                    Sign in here
-                                </a>
-                            </p>
-                        </div>
-
-                    {{ form_end(registrationForm) }}
-                </div>
+<div class="row justify-content-center" style="min-height: 70vh;">
+    <div class="col-md-5">
+        <div class="card shadow-lg border-0 rounded-4">
+            <div class="card-header bg-gradient-nav text-white text-center rounded-top-4 border-0 py-4">
+                <i class="fas fa-dumbbell fa-3x mb-2 d-block"></i>
+                <h3 class="mb-0">Create Account</h3>
+                <small>Join our gym community</small>
             </div>
+            <div class="card-body p-4">
+                {{ form_start(registrationForm, {'attr': {'novalidate': 'novalidate'}}) }}
+                    
+                    <div class="mb-3">
+                        {{ form_label(registrationForm.username, 'Username', {'label_attr': {'class': 'form-label fw-semibold'}}) }}
+                        {{ form_widget(registrationForm.username, {'attr': {'class': 'form-control rounded-3', 'placeholder': 'Choose a username'}}) }}
+                        {{ form_errors(registrationForm.username) }}
+                    </div>
 
-            <!-- Features section under card -->
-            <div class="row mt-4 g-3 d-none d-md-flex">
-                <div class="col text-center">
-                    <small class="text-muted">
-                        <i class="fas fa-check-circle text-success me-1"></i> Free 7-day trial
-                    </small>
-                </div>
-                <div class="col text-center">
-                    <small class="text-muted">
-                        <i class="fas fa-calendar-alt text-primary me-1"></i> Cancel anytime
-                    </small>
-                </div>
-                <div class="col text-center">
-                    <small class="text-muted">
-                        <i class="fas fa-headset text-info me-1"></i> 24/7 support
-                    </small>
-                </div>
+                    <div class="mb-3">
+                        {{ form_label(registrationForm.email, 'Email', {'label_attr': {'class': 'form-label fw-semibold'}}) }}
+                        {{ form_widget(registrationForm.email, {'attr': {'class': 'form-control rounded-3', 'placeholder': 'your@email.com'}}) }}
+                        {{ form_errors(registrationForm.email) }}
+                    </div>
+
+                    <div class="mb-3">
+                        {{ form_label(registrationForm.plainPassword, 'Password', {'label_attr': {'class': 'form-label fw-semibold'}}) }}
+                        {{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'form-control rounded-3', 'placeholder': 'Create a password'}}) }}
+                        {{ form_errors(registrationForm.plainPassword) }}
+                    </div>
+
+                    <div class="mb-4">
+                        <div class="form-check">
+                            {{ form_widget(registrationForm.agreeTerms, {'attr': {'class': 'form-check-input'}}) }}
+                            {{ form_label(registrationForm.agreeTerms, 'I agree to the terms', {'label_attr': {'class': 'form-check-label'}}) }}
+                        </div>
+                        {{ form_errors(registrationForm.agreeTerms) }}
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100 py-2 rounded-pill">
+                        <i class="fas fa-user-plus me-2"></i>Register
+                    </button>
+
+                    <hr>
+                    <div class="text-center">
+                        <p class="mb-0">Already have an account? <a href="{{ path('login') }}">Sign in</a></p>
+                    </div>
+
+                {{ form_end(registrationForm) }}
             </div>
         </div>
     </div>
 </div>
-
-<style>
-    /* Custom styles */
-    .bg-gradient-primary {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    }
-    
-    .card {
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    
-    .card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 1rem 3rem rgba(0,0,0,.175) !important;
-    }
-    
-    .form-control, .input-group-text {
-        transition: all 0.2s ease;
-    }
-    
-    .form-control:focus {
-        box-shadow: none;
-        border-color: #667eea;
-    }
-    
-    .input-group:focus-within .input-group-text {
-        border-color: #667eea;
-        color: #667eea;
-    }
-    
-    .input-group:focus-within .input-group-text i {
-        color: #667eea !important;
-    }
-    
-    .form-check-input:checked {
-        background-color: #667eea;
-        border-color: #667eea;
-    }
-    
-    /* Remove spinner on number inputs */
-    input[type=number]::-webkit-inner-spin-button, 
-    input[type=number]::-webkit-outer-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-    }
-    
-    .min-vh-100 {
-        min-height: 100vh;
-    }
-    
-    @media (max-width: 768px) {
-        .card-body {
-            padding: 1.5rem !important;
-        }
-    }
-</style>
 {% endblock %}

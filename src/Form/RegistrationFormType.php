@@ -19,14 +19,12 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email', EmailType::class, [
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Please enter an email address',
-                    ]),
-                ],
-            ])
             ->add('username', TextType::class, [
+                'label' => 'Username',
+                'attr' => [
+                    'class' => 'form-control rounded-3',
+                    'placeholder' => 'Choose a username'
+                ],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Please enter a username',
@@ -38,9 +36,26 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
+            ->add('email', EmailType::class, [
+                'label' => 'Email',
+                'attr' => [
+                    'class' => 'form-control rounded-3',
+                    'placeholder' => 'your@email.com'
+                ],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Please enter an email',
+                    ]),
+                ],
+            ])
             ->add('plainPassword', PasswordType::class, [
                 'mapped' => false,
-                'attr' => ['autocomplete' => 'new-password'],
+                'label' => 'Password',
+                'attr' => [
+                    'class' => 'form-control rounded-3',
+                    'placeholder' => 'Create a password',
+                    'autocomplete' => 'new-password'
+                ],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Please enter a password',
@@ -54,12 +69,14 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
+                'label' => 'I agree to the terms and conditions',
+                'label_attr' => ['class' => 'form-check-label'],
+                'attr' => ['class' => 'form-check-input'],
                 'constraints' => [
                     new IsTrue([
                         'message' => 'You should agree to our terms.',
                     ]),
                 ],
-                'label' => false,
             ])
         ;
     }

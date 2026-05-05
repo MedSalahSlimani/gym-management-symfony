@@ -1,17 +1,59 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Forgot Password{% endblock %}
+{% block title %}Reset Password | GymApp{% endblock %}
 
 {% block body %}
-<div class="row justify-content-center">
-    <div class="col-md-4">
-        <div class="card shadow">
-            <div class="card-header bg-warning text-dark text-center"><h4><i class="fas fa-key"></i> Reset Password</h4></div>
-            <div class="card-body">
+<div class="row justify-content-center" style="min-height: 70vh;">
+    <div class="col-md-5">
+        <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
+            <!-- Header avec dégradé -->
+            <div class="text-center py-4" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                <i class="fas fa-key fa-3x text-white mb-2"></i>
+                <h2 class="text-white mb-0 fw-bold">Reset Password</h2>
+                <p class="text-white-50 small mb-0">Enter your email address</p>
+            </div>
+
+            <!-- Messages flash -->
+            {% for message in app.flashes('notice') %}
+                <div class="alert alert-info alert-dismissible fade show m-3 mb-0" role="alert">
+                    <i class="fas fa-info-circle me-2"></i>{{ message|raw }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            {% endfor %}
+
+            <!-- Formulaire -->
+            <div class="card-body p-4 p-lg-5">
                 <form method="post">
-                    <div class="mb-3"><label class="form-label">Email</label><input type="email" name="email" class="form-control" required autofocus></div>
-                    <button type="submit" class="btn btn-warning w-100">Send reset link</button>
-                    <hr><p class="text-center"><a href="{{ path('login') }}">Back to login</a></p>
+                    <div class="mb-4">
+                        <label class="form-label fw-semibold text-secondary">Email address</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light border-end-0 rounded-start-3">
+                                <i class="fas fa-envelope text-muted"></i>
+                            </span>
+                            <input type="email" name="email" class="form-control border-start-0 rounded-end-3" 
+                                   placeholder="your@email.com" required autofocus>
+                        </div>
+                        <div class="form-text text-muted small mt-2">
+                            <i class="fas fa-info-circle me-1"></i>We'll send a reset link to this email
+                        </div>
+                    </div>
+
+                    <div class="d-grid gap-2 mb-4">
+                        <button type="submit" class="btn btn-primary btn-lg rounded-pill py-2 fw-semibold"
+                                style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none;">
+                            <i class="fas fa-paper-plane me-2"></i>Send Reset Link
+                        </button>
+                    </div>
+
+                    <hr class="my-4">
+
+                    <div class="text-center">
+                        <p class="mb-0">
+                            <a href="{{ path('login') }}" class="text-decoration-none small">
+                                <i class="fas fa-arrow-left me-1"></i>Back to Login
+                            </a>
+                        </p>
+                    </div>
                 </form>
             </div>
         </div>
