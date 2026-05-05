@@ -1,14 +1,44 @@
-{{ form_start(form) }}
+{{ form_start(form, {'attr': {'class': 'needs-validation'}}) }}
+
 <div class="row">
-    <div class="col-md-6">{{ form_row(form.member, {'attr': {'class': 'form-control'}}) }}</div>
-    <div class="col-md-6">{{ form_row(form.plan, {'attr': {'class': 'form-control'}}) }}</div>
+    <div class="col-md-6 mb-3">
+        {{ form_label(form.member, 'Member', {'label_attr': {'class': 'form-label fw-semibold'}}) }}
+        {{ form_widget(form.member, {'attr': {'class': 'form-select rounded-3'}}) }}
+        <div class="form-text text-muted small">Select a member</div>
+        {{ form_errors(form.member) }}
+    </div>
+
+    <div class="col-md-6 mb-3">
+        {{ form_label(form.plan, 'Plan', {'label_attr': {'class': 'form-label fw-semibold'}}) }}
+        {{ form_widget(form.plan, {'attr': {'class': 'form-select rounded-3'}}) }}
+        <div class="form-text text-muted small">Select a subscription plan</div>
+        {{ form_errors(form.plan) }}
+    </div>
 </div>
+
 <div class="row">
-    <div class="col-md-6">{{ form_row(form.startDate, {'attr': {'class': 'form-control'}}) }}</div>
-    <div class="col-md-6">{{ form_row(form.endDate, {'attr': {'class': 'form-control'}}) }}</div>
+    <div class="col-md-6 mb-3">
+        {{ form_label(form.startDate, 'Start date', {'label_attr': {'class': 'form-label fw-semibold'}}) }}
+        {{ form_widget(form.startDate, {'attr': {'class': 'form-control rounded-3'}}) }}
+        {{ form_errors(form.startDate) }}
+    </div>
+
+    <div class="col-md-6 mb-3">
+        {{ form_label(form.endDate, 'End date', {'label_attr': {'class': 'form-label fw-semibold'}}) }}
+        {{ form_widget(form.endDate, {'attr': {'class': 'form-control rounded-3'}}) }}
+        {{ form_errors(form.endDate) }}
+    </div>
 </div>
-<div class="row">
-    <div class="col-md-6">{{ form_row(form.isPaid, {'attr': {'class': 'form-check-input'}}) }}</div>
+
+<div class="mb-4">
+    <div class="form-check">
+        {{ form_widget(form.isPaid, {'attr': {'class': 'form-check-input'}}) }}
+        {{ form_label(form.isPaid, 'Is paid', {'label_attr': {'class': 'form-check-label'}}) }}
+    </div>
 </div>
-<button class="btn btn-primary mt-3">{{ button_label|default('Save') }}</button>
+
+<button type="submit" class="btn btn-primary px-4 py-2 rounded-pill">
+    <i class="fas fa-save me-2"></i>Save
+</button>
+
 {{ form_end(form) }}

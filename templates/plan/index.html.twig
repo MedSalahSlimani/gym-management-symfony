@@ -1,41 +1,56 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Plan index{% endblock %}
+{% block title %}Membership Plans{% endblock %}
 
 {% block body %}
-    <h1>Plan index</h1>
+<div class="page-header d-flex justify-content-between align-items-center">
+    <div>
+        <h1 class="display-6 fw-bold mb-0"><i class="fas fa-clipboard-list me-3"></i>Membership Plans</h1>
+        <p class="mb-0 opacity-75">Manage subscription plans and pricing</p>
+    </div>
+    <a href="{{ path('app_plan_new') }}" class="btn btn-light btn-lg rounded-pill shadow-sm">
+        <i class="fas fa-plus me-2"></i>Add Plan
+    </a>
+</div>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Price</th>
-                <th>DurationDays</th>
-                <th>Description</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for plan in plans %}
-            <tr>
-                <td>{{ plan.id }}</td>
-                <td>{{ plan.name }}</td>
-                <td>{{ plan.price }}</td>
-                <td>{{ plan.durationDays }}</td>
-                <td>{{ plan.description }}</td>
-                <td>
-                    <a href="{{ path('app_plan_show', {'id': plan.id}) }}">show</a>
-                    <a href="{{ path('app_plan_edit', {'id': plan.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_plan_new') }}">Create new</a>
+<div class="row">
+    {% for plan in plans %}
+    <div class="col-md-6 col-lg-4 mb-4">
+        <div class="card h-100 border-0 shadow-sm rounded-4">
+            <div class="card-header bg-white border-0 pt-4">
+                <h3 class="card-title fw-bold text-primary mb-0">{{ plan.name }}</h3>
+            </div>
+            <div class="card-body">
+                <div class="text-center mb-4">
+                    <span class="display-4 fw-bold text-dark">{{ plan.price }}<small class="fs-6 text-muted">€</small></span>
+                    <span class="badge bg-secondary ms-2">/{{ plan.durationDays }} days</span>
+                </div>
+                <p class="text-muted mb-0">
+                    {% if plan.description %}
+                        {{ plan.description|slice(0, 80) }}{% if plan.description|length > 80 %}...{% endif %}
+                    {% else %}
+                        <em class="text-muted">No description</em>
+                    {% endif %}
+                </p>
+            </div>
+            <div class="card-footer bg-white border-0 pb-4">
+                <div class="d-flex justify-content-end gap-2">
+                    <a href="{{ path('app_plan_show', {'id': plan.id}) }}" class="btn btn-sm btn-outline-info">
+                        <i class="fas fa-eye me-1"></i>Show
+                    </a>
+                    <a href="{{ path('app_plan_edit', {'id': plan.id}) }}" class="btn btn-sm btn-outline-warning">
+                        <i class="fas fa-edit me-1"></i>Edit
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="col-12 text-center py-5">
+        <i class="fas fa-box-open fa-4x text-muted mb-3 d-block"></i>
+        <p class="text-muted">No plans available</p>
+        <a href="{{ path('app_plan_new') }}" class="btn btn-primary">Create your first plan</a>
+    </div>
+    {% endfor %}
+</div>
 {% endblock %}

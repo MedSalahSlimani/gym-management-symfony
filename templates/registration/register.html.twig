@@ -28,6 +28,23 @@
 
                     {{ form_start(registrationForm, {'attr': {'novalidate': 'novalidate'}}) }}
                         
+                        <!-- Email field -->
+                        <div class="mb-4">
+                            {{ form_label(registrationForm.email, 'Email Address', {'label_attr': {'class': 'form-label fw-semibold'}}) }}
+                            <div class="input-group">
+                                <span class="input-group-text bg-light border-end-0">
+                                    <i class="fas fa-envelope text-muted"></i>
+                                </span>
+                                {{ form_widget(registrationForm.email, {
+                                    'attr': {
+                                        'class': 'form-control border-start-0 ps-0',
+                                        'placeholder': 'Enter your email'
+                                    }
+                                }) }}
+                            </div>
+                            {{ form_errors(registrationForm.email) }}
+                        </div>
+
                         <!-- Username field -->
                         <div class="mb-4">
                             {{ form_label(registrationForm.username, 'Username', {'label_attr': {'class': 'form-label fw-semibold'}}) }}

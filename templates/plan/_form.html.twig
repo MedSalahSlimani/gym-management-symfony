@@ -1,4 +1,32 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_start(form, {'attr': {'class': 'needs-validation'}}) }}
+
+<div class="mb-3">
+    {{ form_label(form.name, 'Plan Name', {'label_attr': {'class': 'form-label fw-semibold'}}) }}
+    {{ form_widget(form.name, {'attr': {'class': 'form-control rounded-3', 'placeholder': 'e.g., Premium, Basic, Gold'}}) }}
+    {{ form_errors(form.name) }}
+</div>
+
+<div class="row">
+    <div class="col-md-6 mb-3">
+        {{ form_label(form.price, 'Price (€)', {'label_attr': {'class': 'form-label fw-semibold'}}) }}
+        {{ form_widget(form.price, {'attr': {'class': 'form-control rounded-3', 'placeholder': 'e.g., 49.99'}}) }}
+        {{ form_errors(form.price) }}
+    </div>
+    <div class="col-md-6 mb-3">
+        {{ form_label(form.durationDays, 'Duration (days)', {'label_attr': {'class': 'form-label fw-semibold'}}) }}
+        {{ form_widget(form.durationDays, {'attr': {'class': 'form-control rounded-3', 'placeholder': 'e.g., 30'}}) }}
+        {{ form_errors(form.durationDays) }}
+    </div>
+</div>
+
+<div class="mb-4">
+    {{ form_label(form.description, 'Description', {'label_attr': {'class': 'form-label fw-semibold'}}) }}
+    {{ form_widget(form.description, {'attr': {'class': 'form-control rounded-3', 'rows': 4, 'placeholder': 'Describe what this plan includes...'}}) }}
+    {{ form_errors(form.description) }}
+</div>
+
+<button type="submit" class="btn btn-primary px-4 py-2 rounded-pill">
+    <i class="fas fa-save me-2"></i>Save
+</button>
+
 {{ form_end(form) }}

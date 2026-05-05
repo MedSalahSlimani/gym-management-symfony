@@ -41,11 +41,11 @@ class Coach
     public function setSpecialty(string $specialty): static { $this->specialty = $specialty; return $this; }
     public function getSessions(): Collection { return $this->sessions; }
 
-    public function __toString(): string
-    {
-        return $this->name . ' ' . $this->surname . ' (' . $this->specialty . ')';
-    }
-
+// src/Entity/Coach.php
+public function __toString(): string
+{
+    return $this->name . ' ' . $this->surname;
+}
     public function addSession(Session $session): static
     {
         if (!$this->sessions->contains($session)) {

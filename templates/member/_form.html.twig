@@ -1,4 +1,81 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_start(form, {'attr': {'class': 'needs-validation'}}) }}
+
+<div class="mb-3">
+    {{ form_label(form.name, 'Name', {'label_attr': {'class': 'form-label fw-semibold'}}) }}
+    {{ form_widget(form.name, {'attr': {'class': 'form-control rounded-3', 'placeholder': 'Enter first name'}}) }}
+</div>
+
+<div class="mb-3">
+    {{ form_label(form.surname, 'Surname', {'label_attr': {'class': 'form-label fw-semibold'}}) }}
+    {{ form_widget(form.surname, {'attr': {'class': 'form-control rounded-3', 'placeholder': 'Enter last name'}}) }}
+</div>
+
+<div class="mb-3">
+    {{ form_label(form.email, 'Email', {'label_attr': {'class': 'form-label fw-semibold'}}) }}
+    {{ form_widget(form.email, {'attr': {'class': 'form-control rounded-3', 'placeholder': 'email@example.com'}}) }}
+</div>
+
+<div class="mb-3">
+    {{ form_label(form.phone, 'Phone', {'label_attr': {'class': 'form-label fw-semibold'}}) }}
+    {{ form_widget(form.phone, {'attr': {'class': 'form-control rounded-3', 'placeholder': '+216 XX XXX XXX'}}) }}
+</div>
+
+<div class="mb-4">
+    {{ form_label(form.joinDate, 'Join date', {'label_attr': {'class': 'form-label fw-semibold'}}) }}
+    {{ form_widget(form.joinDate, {'attr': {'class': 'form-control rounded-3', 'style': 'width: auto; display: inline-block; width: 200px;'}}) }}
+</div>
+
+<!-- Sessions section - vertical layout -->
+<div class="mb-4">
+    <label class="form-label fw-semibold mb-2">Sessions</label>
+    <div class="sessions-list">
+        {% for session in form.sessions %}
+            <div class="session-item">
+                {{ form_widget(session, {'attr': {'class': 'form-check-input'}}) }}
+                {{ form_label(session, null, {'label_attr': {'class': 'form-check-label ms-2'}}) }}
+            </div>
+        {% endfor %}
+    </div>
+    {{ form_errors(form.sessions) }}
+</div>
+
+<div class="mt-4">
+    <button type="submit" class="btn btn-primary px-4 py-2 rounded-pill">
+        <i class="fas fa-save me-2"></i>Save
+    </button>
+</div>
+
 {{ form_end(form) }}
+
+<style>
+    .sessions-list {
+        background: #f8f9fa;
+        border: 1px solid #e9ecef;
+        border-radius: 0.75rem;
+        padding: 1rem;
+    }
+    .session-item {
+        display: flex;
+        align-items: center;
+        padding: 6px 0;
+    }
+    .session-item:not(:last-child) {
+        border-bottom: 1px solid #e9ecef;
+    }
+    .form-check-input {
+        width: 18px;
+        height: 18px;
+        cursor: pointer;
+        accent-color: #667eea;
+        margin: 0;
+    }
+    .form-check-label {
+        cursor: pointer;
+        margin: 0;
+        font-weight: normal;
+        color: #2d3748;
+    }
+    .form-check-label:hover {
+        color: #667eea;
+    }
+</style>

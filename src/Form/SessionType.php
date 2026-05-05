@@ -14,23 +14,26 @@ class SessionType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder
-            ->add('title')
-            ->add('sessionDate')
-            ->add('duration')
-            ->add('capacity')
-            ->add('coaches', EntityType::class, [
-                'class' => Coach::class,
-                'choice_label' => 'id',
-                'multiple' => true,
-            ])
-            ->add('members', EntityType::class, [
-                'class' => Member::class,
-                'choice_label' => 'id',
-                'multiple' => true,
-            ])
-        ;
-    }
+    $builder
+        ->add('title')
+        ->add('sessionDate')
+        ->add('duration')
+        ->add('capacity')
+        ->add('coaches', EntityType::class, [
+            'class' => Coach::class,
+            'choice_label' => 'name',  // 🔥 Force l'affichage du nom
+            'multiple' => true,
+            'expanded' => true,
+            'required' => false,
+        ])
+        ->add('members', EntityType::class, [
+            'class' => Member::class,
+            'choice_label' => 'name',  // 🔥 Force l'affichage du nom
+            'multiple' => true,
+            'expanded' => true,
+            'required' => false,
+        ]);
+}
 
     public function configureOptions(OptionsResolver $resolver): void
     {

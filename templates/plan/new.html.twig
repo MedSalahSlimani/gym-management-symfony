@@ -1,11 +1,28 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Plan{% endblock %}
+{% block title %}Create new Plan{% endblock %}
 
 {% block body %}
-    <h1>Create new Plan</h1>
-
-    {{ include('plan/_form.html.twig') }}
-
-    <a href="{{ path('app_plan_index') }}">back to list</a>
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow-sm border-0 rounded-4">
+                <div class="card-header bg-white border-0 pt-4 pb-0">
+                    <h1 class="h3 mb-0 text-primary">
+                        <i class="fas fa-clipboard-list me-2"></i>Create new Plan
+                    </h1>
+                    <p class="text-muted small mt-2">Create a membership plan</p>
+                </div>
+                <div class="card-body">
+                    {{ include('plan/_form.html.twig') }}
+                    <div class="mt-4">
+                        <a href="{{ path('app_plan_index') }}" class="btn btn-outline-secondary btn-sm">
+                            <i class="fas fa-arrow-left me-1"></i>back to list
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

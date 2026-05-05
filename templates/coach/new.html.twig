@@ -1,11 +1,28 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Coach{% endblock %}
+{% block title %}Create new Coach{% endblock %}
 
 {% block body %}
-    <h1>Create new Coach</h1>
-
-    {{ include('coach/_form.html.twig') }}
-
-    <a href="{{ path('app_coach_index') }}">back to list</a>
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow-sm border-0 rounded-4">
+                <div class="card-header bg-white border-0 pt-4 pb-0">
+                    <h1 class="h3 mb-0 text-primary">
+                        <i class="fas fa-chalkboard-user me-2"></i>Create new Coach
+                    </h1>
+                    <p class="text-muted small mt-2">Add a new coach to the gym</p>
+                </div>
+                <div class="card-body">
+                    {{ include('coach/_form.html.twig') }}
+                    <div class="mt-4">
+                        <a href="{{ path('app_coach_index') }}" class="btn btn-outline-secondary btn-sm">
+                            <i class="fas fa-arrow-left me-1"></i>back to list
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

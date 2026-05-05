@@ -58,11 +58,11 @@ class Member
     public function getSessions(): Collection { return $this->sessions; }
     public function getSubscriptions(): Collection { return $this->subscriptions; }
 
-    public function __toString(): string
-    {
-        return $this->name . ' ' . $this->surname;
-    }
-
+// src/Entity/Member.php
+public function __toString(): string
+{
+    return $this->name . ' ' . $this->surname;
+}
     public function addSession(Session $session): static
     {
         if (!$this->sessions->contains($session)) {

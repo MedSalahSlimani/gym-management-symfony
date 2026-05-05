@@ -1,4 +1,28 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_start(form, {'attr': {'class': 'needs-validation'}}) }}
+
+<div class="mb-3">
+    {{ form_label(form.name, 'Name', {'label_attr': {'class': 'form-label fw-semibold'}}) }}
+    {{ form_widget(form.name, {'attr': {'class': 'form-control rounded-3', 'placeholder': 'Enter first name'}}) }}
+    {{ form_errors(form.name) }}
+</div>
+
+<div class="mb-3">
+    {{ form_label(form.surname, 'Surname', {'label_attr': {'class': 'form-label fw-semibold'}}) }}
+    {{ form_widget(form.surname, {'attr': {'class': 'form-control rounded-3', 'placeholder': 'Enter last name'}}) }}
+    {{ form_errors(form.surname) }}
+</div>
+
+<div class="mb-4">
+    {{ form_label(form.specialty, 'Specialty', {'label_attr': {'class': 'form-label fw-semibold'}}) }}
+    {{ form_widget(form.specialty, {'attr': {'class': 'form-control rounded-3', 'placeholder': 'e.g., Yoga, CrossFit, Boxing'}}) }}
+    <div class="form-text text-muted small mt-1">
+        <i class="fas fa-info-circle me-1"></i>Main coaching discipline
+    </div>
+    {{ form_errors(form.specialty) }}
+</div>
+
+<button type="submit" class="btn btn-primary px-4 py-2 rounded-pill">
+    <i class="fas fa-save me-2"></i>Save
+</button>
+
 {{ form_end(form) }}
